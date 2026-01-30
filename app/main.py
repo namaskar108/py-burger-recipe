@@ -6,10 +6,10 @@ class Validator(ABC):
     def __set_name__(self, owner: type, name: str) -> None:
         self.protected_name = "_" + name
 
-    def __get__(self, instance: Any, owner: type) -> int:
+    def __get__(self, instance: Any, owner: type) -> Any:
         return getattr(instance, self.protected_name)
 
-    def __set__(self, instance: Any, value: int) -> None:
+    def __set__(self, instance: Any, value: Any) -> None:
         self.validate(value)
         setattr(instance, self.protected_name, value)
 
